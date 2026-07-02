@@ -1,0 +1,12 @@
+---
+description: Viewer folder — software only, demo fixtures
+globs: viewer/**
+alwaysApply: false
+---
+
+# Viewer software (track 1)
+
+Read [sprints/README.md](../viewer/sprints/README.md) for current sprint. Phase 2 complete.
+
+- Test on **demo fixtures** only (`demo-*` ids) — not house dimensions or `01`–`09/spec.ts`
+- Done when `npm run validate` and `npm run dev` pass on demo data

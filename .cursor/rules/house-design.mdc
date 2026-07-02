@@ -1,0 +1,37 @@
+---
+description: House design track — where to look and how to add geometry
+globs: "{00-project,01-site,02-envelope,03-passive-solar,04-water-tanks,05-floor-plan,06-structure,07-mechanical,08-systems,09-compliance}/**"
+alwaysApply: false
+---
+
+# House design (track 2)
+
+Viewer Phase 2 is complete. This is **house modeling**, not viewer software.
+
+## Read first (in order)
+
+1. [00-project/house-design.md](../00-project/house-design.md) — order of work
+2. [00-project/concept.md](../00-project/concept.md) — dimensions & program
+3. [00-project/decision-log.md](../00-project/decision-log.md) — locked decisions
+4. Active folder's `README.md` (+ `viability.md` if present)
+5. [viewer/model/schema.ts](../viewer/model/schema.ts) — entity kinds, layers, coordinates
+6. [00-project/spec.example.ts](../00-project/spec.example.ts) — spec file shape
+
+## Add geometry (every new discipline module)
+
+1. Create or edit `<folder>/spec.ts` — export `getSpecEntities()` (see spec.example.ts)
+2. Register in [viewer/model/registry.ts](../viewer/model/registry.ts)
+3. Add module id to `house` array in [viewer/model/compose.config.ts](../viewer/model/compose.config.ts)
+4. `cd viewer && npm run validate:house`
+5. `npm run dev:house` — inspect in viewer; **take screenshots** (see [house-visual-verify.mdc](./house-visual-verify.mdc))
+
+## Conventions
+
+- **Entity ids:** discipline-scoped (`slab-main`, `tank-east`) — never `demo-*`
+- **Units:** feet; origin SW corner of slab, Y=0 (see schema.ts)
+- **Markdown** = narrative & decisions; **spec.ts** = positions & sizes (cite entity ids in markdown)
+- **Do not** edit `viewer/fixtures/` or viewer sprints for house content
+
+## Iterate
+
+Viewer → describe in chat → edit `spec.ts` + docs → `validate:house` → reload. Details: [viewer/iteration.md](../viewer/iteration.md).

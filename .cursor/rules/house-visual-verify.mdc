@@ -1,0 +1,21 @@
+---
+description: Visual verification when adding or editing house geometry
+globs: "{00-project,01-site,02-envelope,03-passive-solar,04-water-tanks,05-floor-plan,06-structure,07-mechanical,08-systems,09-compliance}/**"
+alwaysApply: false
+---
+
+# House geometry — visual verification
+
+After creating or materially changing house `spec.ts` entities (or registering new modules):
+
+1. `cd viewer && npm run validate:house`
+2. Ensure `npm run dev:house` is running; open the local URL (5173 or next free port)
+3. **Take browser screenshots** before declaring done:
+   - **Reset** camera — overall context
+   - **Elevation** — south/north grade alignment and buried depth
+   - **Plan** — footprint cutouts, overlaps, tank/slab placement
+4. Fix obvious issues (floating above grade, site overlap, wrong orientation) before finishing
+
+Use the browser MCP (`browser_navigate`, `browser_click` on camera presets, `browser_take_screenshot`).
+
+Do not skip visual check for foundation, site, envelope, or any 3D-visible house work.

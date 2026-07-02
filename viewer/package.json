@@ -1,0 +1,33 @@
+{
+  "name": "house-viewer",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:demo": "VITE_COMPOSE_PROFILE=demo-full vite",
+    "dev:house": "VITE_COMPOSE_PROFILE=house vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "validate": "tsx scripts/validate.ts",
+    "validate:house": "COMPOSE_PROFILE=house tsx scripts/validate.ts"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.0.6",
+    "@react-three/fiber": "^9.1.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "three": "^0.175.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@types/three": "^0.175.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "tsx": "^4.19.4",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5"
+  }
+}

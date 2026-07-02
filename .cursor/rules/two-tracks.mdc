@@ -1,0 +1,15 @@
+---
+description: Two tracks — point to the right rule before acting
+alwaysApply: true
+---
+
+# Two tracks
+
+| Track | Where | Follow |
+|-------|-------|--------|
+| **Viewer software** | `viewer/` | [viewer-software.mdc](./viewer-software.mdc) |
+| **House design** | `00-project/`, `01`–`09/` | [house-design.mdc](./house-design.mdc) |
+
+Identify the track before acting. If unclear, ask.
+
+House geometry lives in discipline `spec.ts` files — **not** in `viewer/fixtures/`. Viewer Phase 2 is complete; house modeling is ready.
