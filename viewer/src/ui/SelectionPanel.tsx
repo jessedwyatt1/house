@@ -1,7 +1,8 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { Entity } from '../../model/schema.ts'
 import { entityMeasurementRows, formatFeet } from '../viewer/measurements.ts'
 import { PanelHeader } from './PanelHeader.tsx'
+import { useCompactLayout } from './useCompactLayout.ts'
 
 type SelectionPanelProps = {
   selectedEntity: Entity | null
@@ -65,9 +66,14 @@ export function SelectionPanel({
   onSelect,
   onClear,
 }: SelectionPanelProps) {
-  const [collapsed, setCollapsed] = useState(false)
+  const compact = useCompactLayout()
+  const [collapsed, setCollapsed] = useState(compact)
   const [search, setSearch] = useState('')
   const [showList, setShowList] = useState(false)
+
+  useEffect(() => {
+    if (compact) setCollapsed(true)
+  }, [compact])
 
   const filteredEntities = useMemo(() => {
     const query = search.trim().toLowerCase()

@@ -135,6 +135,7 @@ export default function App() {
   return (
     <div className="app">
       <Canvas
+        style={{ touchAction: 'none' }}
         camera={{ fov: 50, near: 0.1, far: 1000, up: [0, 1, 0] }}
         onPointerMissed={handleClearSelection}
       >

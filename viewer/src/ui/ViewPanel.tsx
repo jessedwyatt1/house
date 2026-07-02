@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { CameraPreset, SectionAxis } from '../../model/cameraPresets.ts'
 import { PanelHeader } from './PanelHeader.tsx'
+import { useCompactLayout } from './useCompactLayout.ts'
 
 export type SectionState = {
   enabled: boolean
@@ -38,7 +39,12 @@ export function ViewPanel({
   onXrayChange,
   onPreset,
 }: ViewPanelProps) {
-  const [collapsed, setCollapsed] = useState(false)
+  const compact = useCompactLayout()
+  const [collapsed, setCollapsed] = useState(compact)
+
+  useEffect(() => {
+    if (compact) setCollapsed(true)
+  }, [compact])
   const [min, max] = sectionRange
 
   return (

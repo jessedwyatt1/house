@@ -17,7 +17,9 @@ export function CompassReporter() {
     }
 
     direction.current.normalize()
-    const headingRad = Math.atan2(direction.current.x, direction.current.z)
+    // ModelFrame mirrors geometry on X so east reads right on screen; negate X here
+    // so the compass dial matches the mirrored view without changing world coords.
+    const headingRad = Math.atan2(-direction.current.x, direction.current.z)
     setCompassHeading((headingRad * 180) / Math.PI)
   })
 

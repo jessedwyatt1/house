@@ -23,6 +23,13 @@ body {
   height: 100%;
 }
 
+.app canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
 .dev-tools {
   position: absolute;
   top: 12px;
@@ -536,4 +543,41 @@ body {
   margin: -2px 0 0 -2px;
   border-radius: 50%;
   background: #ccc;
+}
+
+@media (max-width: 640px), (pointer: coarse) and (max-width: 900px) {
+  .view-panel {
+    bottom: 12px;
+    left: 12px;
+    right: auto;
+    width: min(240px, calc(50vw - 18px));
+    max-height: min(42vh, 320px);
+    overflow-y: auto;
+  }
+
+  .selection-panel {
+    bottom: 12px;
+    right: 12px;
+    left: auto;
+    width: min(240px, calc(50vw - 18px));
+    max-height: min(42vh, 320px);
+  }
+
+  .scale-bar {
+    bottom: auto;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .layers-panel {
+    top: 56px;
+    max-width: min(180px, calc(100vw - 24px));
+  }
+
+  .compass {
+    top: auto;
+    bottom: 68px;
+    left: 12px;
+  }
 }

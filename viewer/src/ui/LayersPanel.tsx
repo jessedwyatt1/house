@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { LAYER_IDS, type LayerId } from '../../model/schema.ts'
 import { PanelHeader } from './PanelHeader.tsx'
+import { useCompactLayout } from './useCompactLayout.ts'
 
 type LayersPanelProps = {
   /** Layers to list — typically those present in the model, schema-ordered. */
@@ -20,7 +21,12 @@ export function LayersPanel({
   entityCounts,
   onToggle,
 }: LayersPanelProps) {
-  const [collapsed, setCollapsed] = useState(false)
+  const compact = useCompactLayout()
+  const [collapsed, setCollapsed] = useState(compact)
+
+  useEffect(() => {
+    if (compact) setCollapsed(true)
+  }, [compact])
 
   return (
     <aside
