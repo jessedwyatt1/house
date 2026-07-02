@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "cd viewer && npm install",
+  "buildCommand": "cd viewer && npm run build",
+  "outputDirectory": "viewer/dist",
+  "framework": "vite",
+  "build": {
+    "env": {
+      "VITE_COMPOSE_PROFILE": "house"
+    }
+  }
+}

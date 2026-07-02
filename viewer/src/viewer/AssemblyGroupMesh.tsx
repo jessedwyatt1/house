@@ -8,6 +8,7 @@ type AssemblyGroupMeshProps = SelectionProps & {
   members: Entity[]
   xrayEnabled: boolean
   clippingPlanes?: THREE.Plane[]
+  selectedId: string | null
 }
 
 function readPivot(members: Entity[]): [number, number, number] {

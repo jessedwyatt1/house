@@ -477,7 +477,7 @@ function deskAgainstWall(
     },
     ...legPositions.map(([corner, legX, legZ]) => ({
       id: `${idPrefix}-leg-${corner}`,
-      layer: 'annotations',
+      layer: 'annotations' as const,
       kind: 'box' as const,
       position: [legX, 0, legZ],
       size: [DESK_LEG, DESK_LEG_HEIGHT, DESK_LEG] as [number, number, number],
@@ -529,7 +529,7 @@ function deskAgainstWestWall(
     },
     ...legPositions.map(([corner, legX, legZ]) => ({
       id: `${idPrefix}-leg-${corner}`,
-      layer: 'annotations',
+      layer: 'annotations' as const,
       kind: 'box' as const,
       position: [legX, 0, legZ],
       size: [DESK_LEG, DESK_LEG_HEIGHT, DESK_LEG] as [number, number, number],
