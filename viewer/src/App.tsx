@@ -11,10 +11,13 @@ import { countByLayer, layersInModel } from '../model/layers.ts'
 import type { LayerId, Entity } from '../model/schema.ts'
 import { LayersPanel } from './ui/LayersPanel.tsx'
 import { Compass } from './ui/Compass.tsx'
+import { CameraPanPad } from './ui/CameraPanPad.tsx'
+import { TouchHints } from './ui/TouchHints.tsx'
 import { ScaleBar } from './ui/ScaleBar.tsx'
 import { SelectionPanel } from './ui/SelectionPanel.tsx'
 import { ViewPanel, type SectionState } from './ui/ViewPanel.tsx'
 import { CameraPresetController } from './viewer/CameraPresetController.tsx'
+import { CameraPanController } from './viewer/CameraPanController.tsx'
 import { CameraSetup } from './viewer/CameraSetup.tsx'
 import { ClippingSetup } from './viewer/clipping.ts'
 import { DevTools } from './viewer/DevTools.tsx'
@@ -163,10 +166,13 @@ export default function App() {
           {showAxes && <axesHelper args={[15]} position={[0, 0, 0]} />}
         </ModelFrame>
         <NavigationControls bounds={bounds} />
+        <CameraPanController />
         <ScaleReporter target={cameraTarget} />
         <CompassReporter />
       </Canvas>
       <Compass />
+      <CameraPanPad />
+      <TouchHints />
       <ScaleBar />
       <ViewPanel
         section={section}

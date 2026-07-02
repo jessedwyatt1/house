@@ -1,30 +1,13 @@
 import { OrbitControls } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { TOUCH } from 'three'
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
 import { computeCameraFrame, boundsKey, type Bounds } from '../../model/bounds.ts'
-import { useTwoFingerPan } from './useTwoFingerPan.ts'
+import { useCoarsePointer } from '../ui/useCoarsePointer.ts'
 
 type NavigationControlsProps = {
   bounds: Bounds
-}
-
-function useCoarsePointer() {
-  const [coarse, setCoarse] = useState(() =>
-    typeof window !== 'undefined'
-      ? window.matchMedia('(pointer: coarse)').matches
-      : false,
-  )
-
-  useEffect(() => {
-    const mq = window.matchMedia('(pointer: coarse)')
-    const update = () => setCoarse(mq.matches)
-    mq.addEventListener('change', update)
-    return () => mq.removeEventListener('change', update)
-  }, [])
-
-  return coarse
 }
 
 export function NavigationControls({ bounds }: NavigationControlsProps) {
@@ -39,17 +22,23 @@ export function NavigationControls({ bounds }: NavigationControlsProps) {
 
   useEffect(() => {
     const controls = controlsRef.current
-    if (!controls || !coarsePointer) return
+    if (!controls) return
 
-    controls.screenSpacePanning = true
-    controls.panSpeed = 1.4
-    controls.touches = {
-      ONE: TOUCH.ROTATE,
-      TWO: TOUCH.DOLLY_PAN,
+    if (coarsePointer) {
+      // Touch: one-finger orbit, two-finger pinch zoom; pan via D-pad only.
+      controls.enablePan = false
+      controls.touches = {
+        ONE: TOUCH.ROTATE,
+        TWO: TOUCH.DOLLY_PAN,
+      }
+    } else {
+      controls.enablePan = true
+      controls.touches = {
+        ONE: TOUCH.ROTATE,
+        TWO: TOUCH.DOLLY_PAN,
+      }
     }
   }, [coarsePointer])
-
-  useTwoFingerPan(controlsRef, coarsePointer)
 
   return (
     <OrbitControls
